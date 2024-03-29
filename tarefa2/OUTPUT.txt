@@ -1,0 +1,13 @@
+FECHADA
+n_splits:  2 | int: 68.9413014 | err: 1.0000000
+n_splits:  4 | int: 69.3334322 | err: 0.0056557
+n_splits:  8 | int: 69.3483789 | err: 0.0002155
+n_splits: 16 | int: 69.3485845 | err: 0.0000030
+n_splits: 32 | int: 69.3485876 | err: 0.0000000
+
+ABERTA
+n_splits:  2 | int: 70.0378798 | err: 1.0000000
+n_splits:  4 | int: 69.3796479 | err: 0.0094874
+n_splits:  8 | int: 69.3490115 | err: 0.0004418
+n_splits: 16 | int: 69.3485940 | err: 0.0000060
+n_splits: 32 | int: 69.3485877 | err: 0.0000001
