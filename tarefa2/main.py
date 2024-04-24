@@ -2,7 +2,7 @@ import math
 
 # funcao a ser integrada, de 0 a 10
 def f(x):
-    return (x**2) * math.sin(x)
+    return math.log(((x**2) * math.sin(x))**2)
 
 
 def integral(f, a, b, n_splits, poly):
@@ -40,7 +40,7 @@ def test_integral(f, a, b, poly, thr=1e-6):
 
 
 print('FECHADA')
-test_integral(f, 0, 10, fechada)
+test_integral(f, 1, 7.3, fechada)
 
 print('\nABERTA')
-test_integral(f, 0, 10, aberta)
+test_integral(f, 1, 7.3, aberta)
