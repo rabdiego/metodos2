@@ -1,7 +1,7 @@
 import math
 
 def F(x):
-    return math.sin(3*x) + math.cos(2*x) + 3
+    return math.sinh(math.sin(math.log(x)))
 
 def _gauss_legendre(f, x_i, x_f):
     def x(a):
@@ -36,13 +36,16 @@ def gauss_legendre(f, x_i, x_f, n_split=1):
     return sum
 
 
-current = gauss_legendre(F, 0, 6, 1)
+A = 2
+B = 21
+
+current = gauss_legendre(F, A, B, 1)
 err = 1
 i = 1
 print(f' {i:3d} | --------- | {current:2.6f} | {err:1.6f} ')
 while err > 1e-6:
     i += 1
     previous = current
-    current = gauss_legendre(F, 0, 6, i)
+    current = gauss_legendre(F, A, B, i)
     err = abs((current - previous)/current)
     print(f' {i:3d} | {previous:2.6f} | {current:2.6f} | {err:1.6f} ')
