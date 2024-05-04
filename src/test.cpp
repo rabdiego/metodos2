@@ -10,7 +10,21 @@ double foo(double x) {
 }
 
 int main() {
-    Methodic::IntegrationMethod* model = new Methodic::OpenNewtonCotes();
-    std::cout << model->integrate(foo, 0, 10, 1e-3, 3).numPartitions << std::endl;
-    std::cout << model->integrate(foo, 0, 10, 1e-3, 3).returnValue << std::endl;
+    std::cout << "Gauss Legendre" << std::endl;
+
+    Methodic::IntegrationMethod* gauss = new Methodic::GaussLegendre();
+
+    for (int i = 2; i <= 4; i++) {
+        std::cout << gauss->integrate(foo, 0, 10, 1e-4, i).numPartitions << std::endl;
+        std::cout << gauss->integrate(foo, 0, 10, 1e-4, i).returnValue << std::endl;
+    }
+
+    std::cout << "Open Newton Cotes" << std::endl;
+    
+    Methodic::IntegrationMethod* newton = new Methodic::OpenNewtonCotes();
+
+    for (int i = 2; i <= 4; i++) {
+        std::cout << newton->integrate(foo, 0, 10, 1e-4, i).numPartitions << std::endl;
+        std::cout << newton->integrate(foo, 0, 10, 1e-4, i).returnValue << std::endl;
+    }
 }
