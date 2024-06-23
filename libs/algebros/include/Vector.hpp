@@ -1,3 +1,5 @@
+#include <string>
+
 #ifndef Vector_H
 #define Vector_H
 
@@ -9,6 +11,7 @@ namespace Algebros {
 
         public:
             Vector(int);
+            Vector(std::string);
             Vector();
             
             int getSize();
@@ -19,6 +22,7 @@ namespace Algebros {
             void setSize(int);
 
             Vector operator+(Vector);
+            Vector operator-(Vector);
             Vector operator*(double);
             double operator*(Vector);
             Vector norm();

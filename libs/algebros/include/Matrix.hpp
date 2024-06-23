@@ -1,4 +1,5 @@
 #include "libs/algebros/include/Vector.hpp"
+#include <string>
 
 #ifndef Matrix_H
 #define Matrix_H
@@ -11,7 +12,7 @@ namespace Algebros {
 
         public:
             Matrix(int);
-
+            Matrix(std::string);
             Matrix();
             void setSize(int);
 
@@ -21,6 +22,9 @@ namespace Algebros {
             void printMatrix();
 
             Vector operator*(Vector);
+            Matrix operator*(double);
+            Matrix operator+(Matrix);
+            Matrix operator-(Matrix);
     };
 }
 

@@ -1,5 +1,6 @@
 #include "libs/algebros/include/Vector.hpp"
 #include <iostream>
+#include <fstream>
 #include <cmath>
 
 using namespace Algebros;
@@ -7,6 +8,34 @@ using namespace Algebros;
 Vector::Vector(int size) {
     this->size = size;
     this->values = (double *)malloc(sizeof(double) * size);
+}
+
+Vector::Vector(std::string filename) {
+    std::string line;
+    std::string delimiter = " ";
+    std::ifstream file (filename);
+    int itter = 0, j = 0;
+
+    if (file.is_open()) {
+        while (getline(file, line)) {
+            if (itter == 0) {
+                this->size = std::stoi(line);
+                this->values = (double *)malloc(sizeof(double) * this->size);
+                itter++;
+            } else {
+                size_t pos = 0;
+                std::string token;
+
+                while ((pos = line.find(delimiter)) != std::string::npos) {
+                    this->setValue(j, stod(line.substr(0, pos)));
+                    line.erase(0, pos + delimiter.length());
+                    j++;
+                }
+                this->setValue(j, stod(line.substr(0, pos)));
+            }
+        }
+        file.close();
+    }
 }
 
 Vector::Vector() { 
@@ -31,6 +60,16 @@ Vector Vector::operator+(Vector vec) {
 
     for (int i = 0; i < this->size; i++) {
         vec2.setValue(i, this->getValue(i) + vec.getValue(i));
+    }
+
+    return vec2;
+}
+
+Vector Vector::operator-(Vector vec) {
+    Vector vec2(this->size);
+
+    for (int i = 0; i < this->size; i++) {
+        vec2.setValue(i, this->getValue(i) - vec.getValue(i));
     }
 
     return vec2;

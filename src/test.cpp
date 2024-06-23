@@ -7,30 +7,15 @@
 #include "libs/methodic/include/EigenMethod.hpp"
 #include "libs/methodic/include/RegularPower.hpp"
 #include "libs/methodic/include/InversePower.hpp"
+#include "libs/methodic/include/DisplacementPower.hpp"
 
 double foo(double x) {
     return sin(x) + cos(3*x) + 3;
 }
 
 int main() {
-    int n = 3;
-
-    Algebros::Vector v(n);
-    Algebros::Matrix m(n);
-
-    v.setValue(0, 1.0);
-    v.setValue(1, 1.0);
-    v.setValue(2, 1.0);
-
-    m.setValue(0, 0, 5.0);
-    m.setValue(0, 1, 2.0);
-    m.setValue(0, 2, 1.0);
-    m.setValue(1, 0, 2.0);
-    m.setValue(1, 1, 3.0);
-    m.setValue(1, 2, 1.0);
-    m.setValue(2, 0, 1.0);
-    m.setValue(2, 1, 1.0);
-    m.setValue(2, 2, 2.0);
+    Algebros::Vector v("data/V5.txt");
+    Algebros::Matrix m("data/M5x5.txt");
 
     Methodic::EigenMethod* r_method = new Methodic::RegularPower();
     Methodic::Autos a = r_method->findEigen(m, v, 1e-10);
@@ -41,4 +26,10 @@ int main() {
     Methodic::Autos b = i_method->findEigen(m, v, 1e-10);
     b.eigenvector.printVector();
     std::cout << b.eigenvalue << std::endl << std::endl;
+
+    Methodic::DisplacementPower* d_method = new Methodic::DisplacementPower();
+    d_method->setM(20);
+    Methodic::Autos c = d_method->findEigen(m, v, 1e-10);
+    c.eigenvector.printVector();
+    std::cout << c.eigenvalue << std::endl << std::endl;
 }
