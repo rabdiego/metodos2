@@ -1,40 +1,36 @@
 #include <iostream>
 #include <cmath>
-#include "libs/methodic/include/Log.hpp"
-#include "libs/methodic/include/IntegrationMethod.hpp"
-#include "libs/methodic/include/GaussLegendre.hpp"
-#include "libs/methodic/include/ClosedNewtonCotes.hpp"
-#include "libs/methodic/include/OpenNewtonCotes.hpp"
+#include "libs/algebros/include/Vector.hpp"
+#include "libs/algebros/include/Matrix.hpp"
+#include "libs/methodic/include/Autos.hpp"
+#include "libs/methodic/include/RegularPower.hpp"
 
 double foo(double x) {
     return sin(x) + cos(3*x) + 3;
 }
 
 int main() {
-    std::cout << "Gauss Legendre" << std::endl;
+    int n = 3;
 
-    Methodic::IntegrationMethod* gauss = new Methodic::GaussLegendre();
+    Algebros::Vector v(n);
+    Algebros::Matrix m(n);
 
-    for (int i = 2; i <= 4; i++) {
-        std::cout << gauss->integrate(foo, 0, 10, 1e-4, i).numPartitions << std::endl;
-        std::cout << gauss->integrate(foo, 0, 10, 1e-4, i).returnValue << std::endl;
-    }
+    v.setValue(0, 1.0);
+    v.setValue(1, 1.0);
+    v.setValue(2, 1.0);
 
-    std::cout << "Closed Newton Cotes" << std::endl;
-    
-    Methodic::IntegrationMethod* newton = new Methodic::ClosedNewtonCotes();
+    m.setValue(0, 0, 5.0);
+    m.setValue(0, 1, 2.0);
+    m.setValue(0, 2, 1.0);
+    m.setValue(1, 0, 2.0);
+    m.setValue(1, 1, 3.0);
+    m.setValue(1, 2, 1.0);
+    m.setValue(2, 0, 1.0);
+    m.setValue(2, 1, 1.0);
+    m.setValue(2, 2, 2.0);
 
-    for (int i = 2; i <= 4; i++) {
-        std::cout << newton->integrate(foo, 0, 10, 1e-4, i).numPartitions << std::endl;
-        std::cout << newton->integrate(foo, 0, 10, 1e-4, i).returnValue << std::endl;
-    }
-
-    std::cout << "Open Newton Cotes" << std::endl;
-    
-    Methodic::IntegrationMethod* newton2 = new Methodic::OpenNewtonCotes();
-
-    for (int i = 2; i <= 4; i++) {
-        std::cout << newton2->integrate(foo, 0, 10, 1e-4, i).numPartitions << std::endl;
-        std::cout << newton2->integrate(foo, 0, 10, 1e-4, i).returnValue << std::endl;
-    }
+    Methodic::RegularPower* method = new Methodic::RegularPower();
+    Methodic::Autos a = method->findEigen(m, v, 0.000001);
+    a.eigenvector.printVector();
+    std::cout << a.eigenvalue << std::endl;
 }
