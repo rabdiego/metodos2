@@ -1,10 +1,10 @@
-#ifndef RegularPower_H
-#define RegularPower_H
+#ifndef InversePower_H
+#define InversePower_H
 
 #include "libs/methodic/include/EigenMethod.hpp"
 
 namespace Methodic {
-    class RegularPower : public EigenMethod {
+    class InversePower : public EigenMethod {
         public:
             Autos findEigen(Algebros::Matrix, Algebros::Vector, double) override;
     };

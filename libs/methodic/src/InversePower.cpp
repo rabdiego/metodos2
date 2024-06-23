@@ -1,15 +1,19 @@
-#include "libs/methodic/include/RegularPower.hpp"
+#include "libs/methodic/include/InversePower.hpp"
+#include "libs/methodic/include/LU.hpp"
 #include <cmath>
 
 using namespace Methodic;
 
-Autos RegularPower::findEigen(Algebros::Matrix A, Algebros::Vector v0, double e) {
+Autos InversePower::findEigen(Algebros::Matrix A, Algebros::Vector v0, double e) {
     int size = v0.getSize();
 
     double l1 = 1;
     double l0 = 0;
     Algebros::Vector v1(size);
     Algebros::Vector v2(size);
+
+    LU lu(A);
+    lu.compute();
 
     v2 << v0;
 
@@ -18,10 +22,12 @@ Autos RegularPower::findEigen(Algebros::Matrix A, Algebros::Vector v0, double e)
         v1 << v2;
 
         v1 << v1.norm();
-        v2 << A * v1;
+        v2 = lu.solve(v1);
 
         l1 = v2 * v1;
     }
+
+    l1 = 1 / l1;
 
     Autos a(l1, v1);
     return a;
