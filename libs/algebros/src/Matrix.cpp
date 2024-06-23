@@ -8,7 +8,16 @@ Matrix::Matrix(int size) {
     this->values = (double *)malloc(sizeof(double) * size * size);
 }
 
+Matrix::Matrix() { 
+    this->size = 0;
+}
+
 int Matrix::getSize() { return this->size; }
+
+void Matrix::setSize(int n) {
+    this->size = n;
+    this->values = (double *)malloc(sizeof(double) * n * n);
+}
 
 void Matrix::setValue(int i, int j, double value) {
     this->values[i * this->size + j] = value;

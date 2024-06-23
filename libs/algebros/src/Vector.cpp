@@ -9,7 +9,9 @@ Vector::Vector(int size) {
     this->values = (double *)malloc(sizeof(double) * size);
 }
 
-Vector::Vector() { }
+Vector::Vector() { 
+    this->size = 0;
+}
 
 int Vector::getSize() { return this->size; }
 
@@ -58,7 +60,7 @@ Vector Vector::norm() {
     return vec * (1/p);
 }
 
-double Vector::dot(Vector vec2) {
+double Vector::operator*(Vector vec2) {
     double p = 0;
 
     for (int i = 0; i < this->size; i++) {
@@ -68,7 +70,16 @@ double Vector::dot(Vector vec2) {
     return p;
 }
 
+void Vector::setSize(int n) {
+    this->size = n;
+    this->values = (double *)malloc(sizeof(double) * n);
+}
+
 void Vector::operator<<(Vector vec) {
+    if (this->size == 0) {
+        this->setSize(vec.getSize());
+    }
+
     for (int i = 0; i < this->size; i++) {
         this->setValue(i, vec.getValue(i));
     }

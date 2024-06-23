@@ -24,7 +24,7 @@ Autos RegularPower::findEigen(Algebros::Matrix A, Algebros::Vector v0, double e)
         v1 << v1.norm();
         v2 << A * v1;
 
-        l1 = v2.dot(v1);
+        l1 = v2 * v1;
     }
 
     Autos a(l1, v1);

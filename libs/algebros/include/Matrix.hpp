@@ -11,6 +11,10 @@ namespace Algebros {
 
         public:
             Matrix(int);
+
+            Matrix();
+            void setSize(int);
+
             int getSize();
             void setValue(int, int, double);
             double getValue(int, int);

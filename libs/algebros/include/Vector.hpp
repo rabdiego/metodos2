@@ -10,15 +10,18 @@ namespace Algebros {
         public:
             Vector(int);
             Vector();
+            
             int getSize();
             void setValue(int, double);
             double getValue(int);
             void printVector();
 
+            void setSize(int);
+
             Vector operator+(Vector);
             Vector operator*(double);
+            double operator*(Vector);
             Vector norm();
-            double dot(Vector);
             void operator<<(Vector);
     };
 };
