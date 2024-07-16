@@ -95,6 +95,37 @@ Vector Matrix::operator*(Vector vec) {
     return result;
 }
 
+Matrix Matrix::T() {
+    Matrix m2(this->size);
+
+    for (int i = 0; i < this->size; i++) {
+        for (int j = 0; j < this->size; j++) {
+            m2.setValue(i, j, this->getValue(j, i));
+        }
+    }
+
+    return m2;
+}
+
+Matrix Matrix::operator*(Matrix m2) {
+    double p;
+    Matrix m3(this->size);
+    
+    for (int i = 0; i < this->size; i++) {
+        for (int j = 0; j < this->size; j++) {
+            p = 0;
+
+            for (int k = 0; k < this->size; k++) {
+                p += this->getValue(i, k) + m2.getValue(k, j);
+            }
+
+            m3.setValue(i, j, p);
+        }
+    }
+
+    return m3;
+}
+
 Matrix Matrix::operator*(double f) {
     Matrix result(this->size);
 

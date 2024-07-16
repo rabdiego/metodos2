@@ -38,3 +38,28 @@ Algebros::Matrix Householder::getHouseholderMatrix(Algebros::Matrix A, int i) {
 
     return H;
 }
+
+std::pair <Algebros::Matrix, Algebros::Matrix> Householder::getTridiagonal(Algebros::Matrix A) {
+    int n = A.getSize();
+
+    Algebros::Matrix H(n), H_i(n), A_i(n), A_imo(n),A_bar(n);
+
+    H.I();
+
+    A_imo = A;
+
+    for (int i = 0; i < n-2; i++) {
+        H_i = this->getHouseholderMatrix(A_imo, i);
+
+        A_i = H_i.T() * A_imo * H_i;
+
+        A_imo = A_i;
+
+        H = H * H_i;
+    }
+
+    A_bar = A_i;
+
+    std::pair <Algebros::Matrix, Algebros::Matrix> return_value{A_bar, H};
+    return return_value;
+}

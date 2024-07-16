@@ -22,8 +22,11 @@ namespace Algebros {
             double getValue(int, int);
             void printMatrix();
 
+            Matrix T();
+
             Vector operator*(Vector);
             Matrix operator*(double);
+            Matrix operator*(Matrix);
             Matrix operator+(Matrix);
             Matrix operator-(Matrix);
     };

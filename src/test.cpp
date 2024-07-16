@@ -36,6 +36,6 @@ int main() {
 
     Algebros::Matrix house("data/H5x5.txt");
     Methodic::Householder* house_method = new Methodic::Householder();
-    Algebros::Matrix house2 = house_method->getHouseholderMatrix(house, 2);
-    house2.printMatrix();
+    std::pair<Algebros::Matrix, Algebros::Matrix> house2 = house_method->getTridiagonal(house);
+    (std::get<0>(house2)).printMatrix();
 }

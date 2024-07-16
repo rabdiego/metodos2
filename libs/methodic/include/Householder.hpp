@@ -11,7 +11,7 @@ namespace Methodic {
     class Householder {
         public:
             Algebros::Matrix getHouseholderMatrix(Algebros::Matrix, int);
-            std::pair <Algebros::Matrix, Algebros::Matrix> getTridiagonal(Algebros::Matrix, int);
+            std::pair <Algebros::Matrix, Algebros::Matrix> getTridiagonal(Algebros::Matrix);
     };
 };
 
