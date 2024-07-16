@@ -42,6 +42,12 @@ Vector::Vector() {
     this->size = 0;
 }
 
+void Vector::zeros() {
+    for (int i = 0; i < this->size; i++) {
+        this->setValue(i, 0.0);
+    }
+}
+
 int Vector::getSize() { return this->size; }
 
 void Vector::setValue(int i, double value) { this->values[i] = value; }
@@ -83,6 +89,15 @@ Vector Vector::operator*(double a) {
     }
 
     return vec2;
+}
+
+double Vector::getLenght() {
+    double p = 0;
+    for (int i = 0; i < this->size; i++) {
+        p += pow(this->getValue(i), 2);
+    }
+
+    return sqrt(p);
 }
 
 Vector Vector::norm() {

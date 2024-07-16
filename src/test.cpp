@@ -8,6 +8,7 @@
 #include "libs/methodic/include/RegularPower.hpp"
 #include "libs/methodic/include/InversePower.hpp"
 #include "libs/methodic/include/DisplacementPower.hpp"
+#include "libs/methodic/include/Householder.hpp"
 
 double foo(double x) {
     return sin(x) + cos(3*x) + 3;
@@ -32,4 +33,9 @@ int main() {
     Methodic::Autos c = d_method->findEigen(m, v, 1e-10);
     c.eigenvector.printVector();
     std::cout << c.eigenvalue << std::endl << std::endl;
+
+    Algebros::Matrix house("data/H5x5.txt");
+    Methodic::Householder* house_method = new Methodic::Householder();
+    Algebros::Matrix house2 = house_method->getHouseholderMatrix(house, 2);
+    house2.printMatrix();
 }

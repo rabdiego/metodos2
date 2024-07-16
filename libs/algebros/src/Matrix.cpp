@@ -68,6 +68,18 @@ void Matrix::printMatrix() {
     }
 }
 
+void Matrix::I() {
+    for (int i = 0; i < this->size; i++) {
+        for (int j = 0; j < this->size; j++) {
+            if (i == j) {
+                this->setValue(i, j, 1.0);
+            } else {
+                this->setValue(i, j, 0.0);
+            }
+        }
+    }
+}
+
 Vector Matrix::operator*(Vector vec) {
     Vector result(this->size);
     double value;

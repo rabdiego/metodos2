@@ -10,12 +10,7 @@ Autos DisplacementPower::findEigen(Algebros::Matrix A, Algebros::Vector v0, doub
     int size = v0.getSize();
 
     Algebros::Matrix I(size);
-    for (int i = 0; i < size; i++) {
-        for (int j = 0; j < size; j++) {
-            if (i == j) { I.setValue(i, j, 1.0); }
-            else { I.setValue(i, j, 0.0); }
-        }
-    }
+    I.I();
 
     I = I * this->m;
     Algebros::Matrix Ah = A - I;

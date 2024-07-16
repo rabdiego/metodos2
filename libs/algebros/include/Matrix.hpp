@@ -15,6 +15,7 @@ namespace Algebros {
             Matrix(std::string);
             Matrix();
             void setSize(int);
+            void I();
 
             int getSize();
             void setValue(int, int, double);

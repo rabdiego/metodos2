@@ -13,6 +13,7 @@ namespace Algebros {
             Vector(int);
             Vector(std::string);
             Vector();
+            void zeros();
             
             int getSize();
             void setValue(int, double);
@@ -20,6 +21,8 @@ namespace Algebros {
             void printVector();
 
             void setSize(int);
+
+            double getLenght();
 
             Vector operator+(Vector);
             Vector operator-(Vector);
