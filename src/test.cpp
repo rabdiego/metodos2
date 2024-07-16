@@ -34,8 +34,9 @@ int main() {
     c.eigenvector.printVector();
     std::cout << c.eigenvalue << std::endl << std::endl;
 
-    Algebros::Matrix house("data/H5x5.txt");
+    Algebros::Matrix house("data/M5x5.txt");
     Methodic::Householder* house_method = new Methodic::Householder();
     std::pair<Algebros::Matrix, Algebros::Matrix> house2 = house_method->getTridiagonal(house);
     (std::get<0>(house2)).printMatrix();
+
 }

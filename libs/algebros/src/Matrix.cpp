@@ -109,14 +109,15 @@ Matrix Matrix::T() {
 
 Matrix Matrix::operator*(Matrix m2) {
     double p;
-    Matrix m3(this->size);
+    int size = this->size;
+    Matrix m3(size);
     
-    for (int i = 0; i < this->size; i++) {
-        for (int j = 0; j < this->size; j++) {
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
             p = 0;
 
-            for (int k = 0; k < this->size; k++) {
-                p += this->getValue(i, k) + m2.getValue(k, j);
+            for (int k = 0; k < size; k++) {
+                p += this->getValue(i,k) * m2.getValue(k, j);
             }
 
             m3.setValue(i, j, p);
