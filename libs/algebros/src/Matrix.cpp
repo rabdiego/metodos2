@@ -62,7 +62,7 @@ double Matrix::getValue(int i, int j) {
 void Matrix::printMatrix() {
     for (int i = 0; i < this->size; i++) {
         for (int j = 0; j < this->size; j++) {
-        std::cout << this->values[i * this->size + j] << " ";
+            std::cout << this->values[i * this->size + j] << " ";
         }
         std::cout << std::endl;
     }

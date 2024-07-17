@@ -18,25 +18,28 @@ int main() {
     Algebros::Vector v("data/V5.txt");
     Algebros::Matrix m("data/M5x5.txt");
 
-    Methodic::EigenMethod* r_method = new Methodic::RegularPower();
-    Methodic::Autos a = r_method->findEigen(m, v, 1e-10);
-    a.eigenvector.printVector();
-    std::cout << a.eigenvalue << std::endl << std::endl;
-
-    Methodic::EigenMethod* i_method = new Methodic::InversePower();
-    Methodic::Autos b = i_method->findEigen(m, v, 1e-10);
-    b.eigenvector.printVector();
-    std::cout << b.eigenvalue << std::endl << std::endl;
-
-    Methodic::DisplacementPower* d_method = new Methodic::DisplacementPower();
-    d_method->setM(20);
-    Methodic::Autos c = d_method->findEigen(m, v, 1e-10);
-    c.eigenvector.printVector();
-    std::cout << c.eigenvalue << std::endl << std::endl;
-
-    Algebros::Matrix house("data/M5x5.txt");
     Methodic::Householder* house_method = new Methodic::Householder();
-    std::pair<Algebros::Matrix, Algebros::Matrix> house2 = house_method->getTridiagonal(house);
-    (std::get<0>(house2)).printMatrix();
+    std::pair<Algebros::Matrix, Algebros::Matrix> house_pair = house_method->getTridiagonal(m);
 
+    std::cout << "Matriz A barra\n"; 
+    (std::get<0>(house_pair)).printMatrix();
+
+    std::cout << "Matriz H\n";
+    (std::get<1>(house_pair)).printMatrix();
+
+    Methodic::EigenMethod* regular_power = new Methodic::RegularPower();
+    Methodic::Autos a_bar_eigen = regular_power->findEigen(std::get<0>(house_pair), v, 1e-10);
+
+    std::cout << "Autovetor de A barra\n";
+    a_bar_eigen.eigenvector.printVector();
+    std::cout << "Autovalor de A barra\n";
+    std::cout << a_bar_eigen.eigenvalue << std::endl;
+
+    Algebros::Vector a_eigenvector = std::get<1>(house_pair) * a_bar_eigen.eigenvector;
+    std::cout << "Autovetor de A\n";
+    a_eigenvector.printVector();
+
+    Algebros::Vector l_a_eigenvector = m * a_eigenvector;
+    double eigenvalue = l_a_eigenvector.getValue(0) / a_eigenvector.getValue(0);
+    std::cout << "Autovalor de A\n" << eigenvalue << std::endl;
 }

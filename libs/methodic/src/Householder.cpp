@@ -44,6 +44,7 @@ std::pair <Algebros::Matrix, Algebros::Matrix> Householder::getTridiagonal(Algeb
 
     Algebros::Matrix H(n), H_i(n), A_i(n), A_imo(n),A_bar(n);
 
+    H.I();
     A_imo = A;
 
     for (int i = 0; i < n-2; i++) {
