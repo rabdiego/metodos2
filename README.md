@@ -29,6 +29,8 @@ There are two main custom libraries, one designed for representing vectors and m
     - Inverse power
     - Displacement power
     - Householder method
+    - Jacobi method
+    - QR method
 
 ## 3. Run locally
 

@@ -1,6 +1,5 @@
 #include "libs/methodic/include/Jacobi.hpp"
 #include <cmath>
-#include <iostream>
 
 using namespace Methodic;
 

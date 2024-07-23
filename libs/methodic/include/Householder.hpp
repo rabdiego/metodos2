@@ -1,5 +1,5 @@
-#ifndef Householder_HP
-#define Householder_HP
+#ifndef Householder_H
+#define Householder_H
 
 #include <utility>
 

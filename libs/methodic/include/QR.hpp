@@ -1,5 +1,5 @@
-#ifndef Jacobi_H
-#define Jacobi_H
+#ifndef QR_H
+#define QR_H
 
 #include <utility>
 
@@ -8,10 +8,10 @@
 #include "libs/methodic/include/Autos.hpp"
 
 namespace Methodic {
-    class Jacobi {
+    class QR {
         public:
-            Algebros::Matrix getJacobiMatrix(Algebros::Matrix, int, int);
-            std::pair <Algebros::Matrix, Algebros::Matrix> innerJacobiLoop(Algebros::Matrix);
+            Algebros::Matrix getQRMatrix(Algebros::Matrix, int, int);
+            std::pair <Algebros::Matrix, Algebros::Matrix> innerQRLoop(Algebros::Matrix);
             std::pair <Algebros::Matrix, Algebros::Vector> getDiagonalValues(Algebros::Matrix, double);
             double getSquaredSumBelowDiag(Algebros::Matrix);
     };
