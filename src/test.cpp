@@ -1,17 +1,35 @@
 #include <iostream>
 #include <cmath>
+#include <vector>
+
 #include "libs/algebros/include/Vector.hpp"
 #include "libs/algebros/include/Matrix.hpp"
 #include "libs/methodic/include/Autos.hpp"
 
-#include "libs/methodic/include/Derivative.hpp"
+#include "libs/methodic/include/ExplicitEuler.hpp"
+
 
 double foo(double x) {
-    return sin(x) + cos(3*x) + 3;
+    return -10.0 - (0.25/2.0)*x;
+}
+
+double bar(double x) {
+    return x;
 }
 
 int main() {
-    Methodic::Derivative* derivative = new Methodic::Derivative();
+    
+    Methodic::ExplicitEuler* ee = new Methodic::ExplicitEuler();
+    Algebros::Vector v(2);
 
-    std::cout << derivative->derivate_forward(foo, 2, 1e-10) << std::endl;    
+    v.setValue(0, 5.0);
+    v.setValue(1, 200.0);
+
+    double (*foos[])(double) = {&foo, &bar};
+    
+    std::vector<Algebros::Vector> result = ee->compute(2, foos, v, 200, 0.1);
+
+    for (int i = 0; i < 200; i += 10) {
+        result[i].printVector();
+    }
 }
