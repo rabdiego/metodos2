@@ -3,20 +3,6 @@
 
 using namespace Methodic;
 
-Algebros::Vector ExplicitEuler::compute(double (*function) (double), double s0, int n_points, double delta) {
-    Algebros::Vector points(n_points);
-    double s1 = s0;
-    double aux;
-
-    for (int i = 0; i < n_points; i++) {
-        aux = s1 +  delta * function(s1);
-        points.setValue(i, aux);
-        s1 = aux;
-    }
-
-    return points;
-}
-
 std::vector<Algebros::Vector> ExplicitEuler::compute(double (*functions[]) (double), Algebros::Vector s0, int n_points, double delta) {
     std::vector <Algebros::Vector> points;
     Algebros::Vector aux;
