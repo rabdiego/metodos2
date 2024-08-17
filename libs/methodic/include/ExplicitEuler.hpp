@@ -8,7 +8,7 @@ namespace Methodic {
     class ExplicitEuler {
         public:
             Algebros::Vector compute(double (*function) (double), double, int, double);
-            std::vector<Algebros::Vector> compute(int, double (*functions[]) (double), Algebros::Vector, int, double);
+            std::vector<Algebros::Vector> compute(double (*functions[]) (double), Algebros::Vector, int, double);
     };
 };
 

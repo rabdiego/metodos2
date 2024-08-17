@@ -17,9 +17,11 @@ Algebros::Vector ExplicitEuler::compute(double (*function) (double), double s0, 
     return points;
 }
 
-std::vector<Algebros::Vector> ExplicitEuler::compute(int n, double (*functions[]) (double), Algebros::Vector s0, int n_points, double delta) {
+std::vector<Algebros::Vector> ExplicitEuler::compute(double (*functions[]) (double), Algebros::Vector s0, int n_points, double delta) {
     std::vector <Algebros::Vector> points;
     Algebros::Vector aux;
+
+    int n = s0.getSize();
 
     aux << s0;
     
