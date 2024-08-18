@@ -27,5 +27,5 @@ int main() {
     Methodic::Derivative* d = new Methodic::Derivative();
     
 
-    std::cout << d->second_derivative(&foo, 2.0, 0.1, 0) << std::endl;
+    std::cout << d->fourth_derivative(&foo, 5.0, 0.1, 0) << std::endl;
 }

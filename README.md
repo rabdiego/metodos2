@@ -19,6 +19,7 @@ There are two main custom libraries, one designed for representing vectors and m
     - Vector dot product
 
 ### 2.b Methodic
+- Derivative methods, up to fourth degree
 - Integration methods
     - Newton-Cotes (closed and open)
     - Gauss-Legendre
@@ -31,6 +32,9 @@ There are two main custom libraries, one designed for representing vectors and m
     - Householder method
     - Jacobi method
     - QR method
+- IVP methods
+    - Explicit Euler method
+    - Runge Kutta method
 
 ## 3. Run locally
 

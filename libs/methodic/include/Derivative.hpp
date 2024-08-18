@@ -11,10 +11,20 @@ namespace Methodic {
             double second_derivative_forward(double (*function) (double), double, double);
             double second_derivative_backward(double (*function) (double), double, double);
             double second_derivative_central(double (*function) (double), double, double);
+            
+            double third_derivative_forward(double (*function) (double), double, double);
+            double third_derivative_backward(double (*function) (double), double, double);
+            double third_derivative_central(double (*function) (double), double, double);
+
+            double fourth_derivative_forward(double (*function) (double), double, double);
+            double fourth_derivative_backward(double (*function) (double), double, double);
+            double fourth_derivative_central(double (*function) (double), double, double);
 
         public:
             double first_derivative(double (*function) (double), double, double, int);
             double second_derivative(double (*function) (double), double, double, int);
+            double third_derivative(double (*function) (double), double, double, int);
+            double fourth_derivative(double (*function) (double), double, double, int);
     };
 };
 
