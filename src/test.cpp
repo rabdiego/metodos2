@@ -9,8 +9,10 @@
 #include "libs/methodic/include/ExplicitEuler.hpp"
 #include "libs/methodic/include/RungeKutta.hpp"
 
+#include "libs/methodic/include/Derivative.hpp"
+
 double foo(double x) {
-    return (2.0 / 3.0) * x;
+    return ((x-2.0)*(x-1.0)*(x)*(x+1.0)*(x+2.0))/120.0;
 }
 
 double bar(double x) {
@@ -22,16 +24,8 @@ double pica(double x) {
 }
 
 int main() {
-    Methodic::RungeKutta* ee = new Methodic::RungeKutta();
-    Algebros::Vector v(1);
+    Methodic::Derivative* d = new Methodic::Derivative();
+    
 
-    v.setValue(0, 2.0);
-
-    double (*foos[])(double) = {&foo};
-
-    std::vector <Algebros::Vector> result = ee->thirdOrder(foos, v, 10, 0.5);
-
-    for (int i = 0; i < 10; i++) {
-        result[i].printVector();
-    }
+    std::cout << d->second_derivative(&foo, 2.0, 0.1, 0) << std::endl;
 }
